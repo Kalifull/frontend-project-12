@@ -11,11 +11,11 @@ export default {
     },
     loading: 'Загрузка...',
     login: {
-      username: 'Ваш ник',
+      username: 'Ваше имя',
       password: 'Пароль',
       submit: 'Войти',
       signup: 'Регистрация',
-      newToChat: 'Нет аккаунта?',
+      newToChat: 'Нет аккаунта? ',
       authFailed: 'Неверные имя пользователя или пароль',
       header: 'Войти',
     },
@@ -34,7 +34,7 @@ export default {
       channelName: 'Имя канала',
       editChannelName: 'Новое имя канала',
     },
-    hexletChat: 'Hexlet Chat',
+    animeChat: 'Аниме Чат',
     logout: 'Выйти',
     chat: {
       send: 'Отправить',
@@ -55,9 +55,11 @@ export default {
       alreadyExists: 'Такой пользователь уже существует',
       submit: 'Зарегистрироваться',
       header: 'Регистрация',
+      haveAnAccount: 'Вы зарегестрированы? ',
+      login: 'Авторизация',
     },
-    notFound: {
-      header: 'Страница не найдена',
+    notFoundPage: {
+      header: 'Страница не найдена ¯\\_(ツ)_/¯',
       message: 'Но вы можете перейти ',
       linkText: 'на главную страницу',
     },

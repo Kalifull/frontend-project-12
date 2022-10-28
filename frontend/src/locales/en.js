@@ -15,7 +15,7 @@ export default {
       password: 'Password',
       submit: 'Submit',
       signup: 'Sign up',
-      newToChat: 'New to chat?',
+      newToChat: 'New to chat? ',
       authFailed: 'Username or password is incorrect',
       header: 'Login',
     },
@@ -34,7 +34,7 @@ export default {
       channelName: 'Chanel name',
       editChannelName: 'New channel name',
     },
-    hexletChat: 'Hexlet Chat',
+    animeChat: 'Anime Chat',
     logout: 'Log out',
     chat: {
       send: 'Send',
@@ -52,9 +52,11 @@ export default {
       alreadyExists: 'Username already taken',
       submit: 'Submit',
       header: 'Signup',
+      haveAnAccount: 'Are you registered? ',
+      login: 'Authorization',
     },
-    notFound: {
-      header: 'Page not found',
+    notFoundPage: {
+      header: 'Page not found ¯\\_(ツ)_/¯',
       message: 'You can go ',
       linkText: 'to the main page',
     },
