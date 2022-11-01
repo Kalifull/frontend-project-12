@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import { Image, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import routes from '../../assets/utils/routes.js';
-import logo from '../../assets/images/logo.png';
-
 import 'flag-icon-css/css/flag-icons.min.css';
+import logo from '../../assets/images/logo.png';
+import routes from '../../utils/routes.js';
 
 const NotFoundPage = () => {
   const { t } = useTranslation();

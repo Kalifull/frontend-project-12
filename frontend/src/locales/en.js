@@ -38,8 +38,11 @@ export default {
     logout: 'Log out',
     chat: {
       send: 'Send',
-      messageCount: 'message',
-      messageCount_plural: 'messages',
+      messageCount_zero: '{{ count }} messages',
+      messageCount_one: '{{ count }} message',
+      messageCount_few: '{{ count }} messages',
+      messageCount_many: '{{ count }} messages',
+      newMessage: 'New message',
     },
     signup: {
       required: 'Required',
@@ -53,7 +56,7 @@ export default {
       submit: 'Submit',
       header: 'Signup',
       haveAnAccount: 'Are you registered? ',
-      login: 'Authorization',
+      login: 'Login',
     },
     notFoundPage: {
       header: 'Page not found ¯\\_(ツ)_/¯',

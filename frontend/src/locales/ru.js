@@ -38,10 +38,10 @@ export default {
     logout: 'Выйти',
     chat: {
       send: 'Отправить',
-      messageCount_zero: 'сообщений',
-      messageCount_one: 'сообщение',
-      messageCount_few: 'сообщения',
-      messageCount_many: 'сообщений',
+      messageCount_zero: '{{ count }} сообщений',
+      messageCount_one: '{{ count }} сообщение',
+      messageCount_few: '{{ count }} сообщения',
+      messageCount_many: '{{ count }} сообщений',
       newMessage: 'Новое сообщение',
     },
     signup: {
@@ -55,7 +55,7 @@ export default {
       alreadyExists: 'Такой пользователь уже существует',
       submit: 'Зарегистрироваться',
       header: 'Регистрация',
-      haveAnAccount: 'Вы зарегестрированы? ',
+      haveAnAccount: 'Вы зарегистрированы? ',
       login: 'Авторизация',
     },
     notFoundPage: {

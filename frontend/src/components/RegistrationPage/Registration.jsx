@@ -6,10 +6,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'react-bootstrap';
 
-import useAuth from '../../hooks/useAuth.jsx';
-import routes from '../../assets/utils/routes.js';
-
 import avatarImages from '../../assets/images/avatarImages.jpg';
+import useAuth from '../../hooks/useAuth.jsx';
+import routes from '../../utils/routes.js';
 
 const Registration = () => {
   const auth = useAuth();

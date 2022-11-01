@@ -7,12 +7,11 @@ import { useTranslation } from 'react-i18next';
 
 import NavbarDropdown from './NavbarDropdown.jsx';
 import useAuth from '../../hooks/useAuth.jsx';
-
-import routes from '../../assets/utils/routes.js';
+import routes from '../../utils/routes.js';
 
 const Navbar = () => {
-  const { t } = useTranslation();
   const { user, logOut } = useAuth();
+  const { t } = useTranslation();
 
   return (
     <BootstrapNavbar bg="dark" variant="dark" expand="lg" className="shadow-sm">
