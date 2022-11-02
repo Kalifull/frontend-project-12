@@ -7,24 +7,24 @@ export const messagesSlice = createSlice({
   initialState: {
     messages: [
       // Для тестирования - раскомментировать
-      // {
-      //   body: 'Привет, как дела? Я вот заебок)',
-      //   channelId: 1,
-      //   username: 'admin',
-      //   id: 3,
-      // },
-      // {
-      //   body: 'привет. да нормально!',
-      //   channelId: 1,
-      //   username: 'дима',
-      //   id: 4,
-      // },
-      // {
-      //   body: 'пойдем пить пиво, черти',
-      //   channelId: 1,
-      //   username: 'Андрей',
-      //   id: 5,
-      // },
+      {
+        body: 'Привет, как дела? Я вот заебок)',
+        channelId: 1,
+        username: 'admin',
+        id: 3,
+      },
+      {
+        body: 'привет. да нормально!',
+        channelId: 1,
+        username: 'дима',
+        id: 4,
+      },
+      {
+        body: 'пойдем пить пиво, черти',
+        channelId: 1,
+        username: 'Андрей',
+        id: 5,
+      },
     ],
   },
   reducers: {

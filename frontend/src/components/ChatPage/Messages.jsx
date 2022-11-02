@@ -14,7 +14,7 @@ const Message = ({ user, body }) => {
       className="text-break text-light mb-2"
       style={{
         marginLeft: username === user ? 'auto' : null,
-        backgroundColor: username === user ? 'rgba(153, 50, 204)' : 'rgb(45, 16, 44)',
+        backgroundColor: username === user ? '#9932cc' : '#2d102c',
       }}
     >
       <b>{user}</b>
