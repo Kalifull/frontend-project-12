@@ -38,10 +38,9 @@ export default {
     logout: 'Log out',
     chat: {
       send: 'Send',
-      messageCount_zero: '{{ count }} messages',
-      messageCount_one: '{{ count }} message',
-      messageCount_few: '{{ count }} messages',
-      messageCount_many: '{{ count }} messages',
+      messageCount_zero: '{{ count }} message',
+      messageCount_other: '{{ count }} messages',
+      notFoundMessage: 'Message not found ( ´•︵•` )',
       newMessage: 'New message',
     },
     signup: {

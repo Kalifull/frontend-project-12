@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +36,7 @@ const ChatPage = () => {
         toast.error(t('errors.network'));
       }
     }
-  }, [auth, dispatch, navigate, t]);
+  }, [auth, dispatch, navigate]);
 
   return loadingStatus === 'loading' ? (
     <div className="h-100 d-flex justify-content-center align-items-center">

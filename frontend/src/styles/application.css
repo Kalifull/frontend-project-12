@@ -1,0 +1,33 @@
+.chat-theme {
+  position: relative;
+  background: #170020;
+  overflow: hidden;
+}
+
+.chat-theme div {
+  position: relative;
+  z-index: 2;
+}
+
+.chat-theme::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.1;
+  background-image: url('../assets/images/theme.jpg');
+  background-repeat: no-repeat;
+  background-position: 50%, 0;
+  background-size: cover;
+}
+
+.chat-messages div {
+  border-radius: 20px;
+  padding: 5px 15px;
+  width: -moz-fit-content;
+  width: fit-content;
+}

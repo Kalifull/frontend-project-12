@@ -42,6 +42,7 @@ export default {
       messageCount_one: '{{ count }} сообщение',
       messageCount_few: '{{ count }} сообщения',
       messageCount_many: '{{ count }} сообщений',
+      notFoundMessage: 'Сообщения не найдены ( ´•︵•` )',
       newMessage: 'Новое сообщение',
     },
     signup: {

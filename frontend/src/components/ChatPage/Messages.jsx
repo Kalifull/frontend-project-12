@@ -2,15 +2,28 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import useAuth from '../../hooks/useAuth.jsx';
 import { getCurrentChannel, getMessagesForCurrentChannel } from '../../store/slices/selectors.js';
+import MessageForm from './MessageForm.jsx';
 
-const Message = ({ username, body }) => (
-  <div className="text-break mb-2">
-    <b>{username}</b>
-    {': '}
-    {body}
-  </div>
-);
+const Message = ({ user, body }) => {
+  const { user: { username } } = useAuth();
+
+  return (
+    <div
+      className="text-break text-light mb-2"
+      style={{
+        marginLeft: username === user ? 'auto' : null,
+        backgroundColor: username === user ? 'rgba(153, 50, 204)' : 'rgb(45, 16, 44)',
+      }}
+    >
+      <b>{user}</b>
+      {': '}
+      <br />
+      {body}
+    </div>
+  );
+};
 
 const Messages = () => {
   const channel = useSelector(getCurrentChannel);
@@ -18,7 +31,7 @@ const Messages = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="d-flex flex-column h-100">
+    <div className="chat-theme d-flex flex-column h-100">
       <div className="bg-light mb-4 p-3 shadow-sm small">
         <p className="m-0">
           <b>{`# ${channel?.name}`}</b>
@@ -27,12 +40,20 @@ const Messages = () => {
           {`${t('chat.messageCount', { count: messages.length })}`}
         </span>
       </div>
-      <div id="messages-box" className="chat-messages overflow-auto px-5 ">
-        {messages.map(({ id, username, body }) => (
-          <Message key={id} username={username} body={body} />
-        ))}
+      {messages.length ? (
+        <div id="messages-box" className="chat-messages overflow-hidden px-5">
+          {messages.map(({ id, username, body }) => (
+            <Message key={id} user={username} body={body} />
+          ))}
+        </div>
+      ) : (
+        <div className="d-flex h-100 d-flex align-items-center justify-content-center text-light">
+          {t('chat.notFoundMessage')}
+        </div>
+      )}
+      <div className="mt-auto px-5 py-3">
+        <MessageForm />
       </div>
-      <div className="mt-auto px-5 py-3" />
     </div>
   );
 };
