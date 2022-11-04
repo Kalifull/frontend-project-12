@@ -25,9 +25,21 @@
   background-size: cover;
 }
 
-.chat-messages div {
+.messages-box div {
   border-radius: 20px;
   padding: 5px 15px;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.message-form {
+  background-color: #222222;
+}
+
+.bg-user {
+  background-color: #9932cc;
+}
+
+.bg-username {
+  background-color: #2d102c;
 }

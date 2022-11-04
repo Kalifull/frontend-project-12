@@ -42,6 +42,7 @@ export default {
       messageCount_other: '{{ count }} messages',
       notFoundMessage: 'Message not found ( ´•︵•` )',
       newMessage: 'New message',
+      placeholder: 'Enter your message...',
     },
     signup: {
       required: 'Required',

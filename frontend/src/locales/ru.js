@@ -44,6 +44,7 @@ export default {
       messageCount_many: '{{ count }} сообщений',
       notFoundMessage: 'Сообщения не найдены ( ´•︵•` )',
       newMessage: 'Новое сообщение',
+      placeholder: 'Введите сообщение...',
     },
     signup: {
       required: 'Обязательное поле',

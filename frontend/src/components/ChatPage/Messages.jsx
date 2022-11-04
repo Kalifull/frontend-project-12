@@ -2,32 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import useAuth from '../../hooks/useAuth.jsx';
-import { getCurrentChannel, getMessagesForCurrentChannel } from '../../store/slices/selectors.js';
+import Message from './Message.jsx';
 import MessageForm from './MessageForm.jsx';
-
-const Message = ({ user, body }) => {
-  const { user: { username } } = useAuth();
-
-  return (
-    <div
-      className="text-break text-light mb-2"
-      style={{
-        marginLeft: username === user ? 'auto' : null,
-        backgroundColor: username === user ? '#9932cc' : '#2d102c',
-      }}
-    >
-      <b>{user}</b>
-      {': '}
-      <br />
-      {body}
-    </div>
-  );
-};
+import { selectCurrentChannel, selectMessagesForCurrentChannel } from '../../store/slices/selectors.js';
 
 const Messages = () => {
-  const channel = useSelector(getCurrentChannel);
-  const messages = useSelector(getMessagesForCurrentChannel);
+  const channel = useSelector(selectCurrentChannel);
+  const messages = useSelector(selectMessagesForCurrentChannel);
   const { t } = useTranslation();
 
   return (
@@ -41,7 +22,7 @@ const Messages = () => {
         </span>
       </div>
       {messages.length ? (
-        <div id="messages-box" className="chat-messages overflow-hidden px-5">
+        <div id="messages-box" className="messages-box overflow-hidden px-5">
           {messages.map(({ id, username, body }) => (
             <Message key={id} user={username} body={body} />
           ))}
@@ -51,8 +32,8 @@ const Messages = () => {
           {t('chat.notFoundMessage')}
         </div>
       )}
-      <div className="mt-auto px-5 py-3">
-        <MessageForm />
+      <div className="message-form mt-auto px-5 py-3">
+        <MessageForm channel={channel} />
       </div>
     </div>
   );

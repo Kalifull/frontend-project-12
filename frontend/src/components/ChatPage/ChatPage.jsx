@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import Spinner from 'react-bootstrap/Spinner';
 
 import { fetchData } from '../../store/slices/channelsSlice.js';
-import { getChannelsState } from '../../store/slices/selectors.js';
+import { selectChannelsState } from '../../store/slices/selectors.js';
 import useAuth from '../../hooks/useAuth.jsx';
 import Channels from './Channels.jsx';
 import Messages from './Messages.jsx';
@@ -19,7 +19,8 @@ const ChatPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const { loadingStatus } = useSelector(getChannelsState);
+  const { loadingStatus } = useSelector(selectChannelsState);
+  const loading = loadingStatus === 'loading';
 
   useEffect(() => {
     try {
@@ -38,7 +39,7 @@ const ChatPage = () => {
     }
   }, [auth, dispatch, navigate]);
 
-  return loadingStatus === 'loading' ? (
+  return loading ? (
     <div className="h-100 d-flex justify-content-center align-items-center">
       <Spinner animation="border" role="status" variant="primary">
         <span className="visually-hidden">{t('loading')}</span>
