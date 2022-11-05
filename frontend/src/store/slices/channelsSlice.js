@@ -1,12 +1,6 @@
-import axios from 'axios';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import routes from '../../utils/routes.js';
-
-export const fetchData = createAsyncThunk('channels/fetchData', async (authHeader) => {
-  const { data } = await axios.get(routes.dataPath(), { headers: authHeader });
-  return data;
-});
+import fetchData from '../../services/fetchData.js';
 
 const defaultChannelId = 1;
 

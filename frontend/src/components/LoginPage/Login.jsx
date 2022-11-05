@@ -6,9 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
-import avatarImages from '../../assets/images/avatarImages.jpg';
-import useAuth from '../../hooks/useAuth.jsx';
+import { useAuth } from '../../hooks/index.js';
 import routes from '../../utils/routes.js';
+
+import avatarImages from '../../assets/images/avatarImages.jpg';
 
 const Login = () => {
   const auth = useAuth();

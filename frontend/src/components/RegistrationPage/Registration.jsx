@@ -6,13 +6,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'react-bootstrap';
 
-import avatarImages from '../../assets/images/avatarImages.jpg';
-import useAuth from '../../hooks/useAuth.jsx';
+import { useAuth } from '../../hooks/index.js';
 import routes from '../../utils/routes.js';
+
+import avatarImages from '../../assets/images/avatarImages.jpg';
 
 const Registration = () => {
   const auth = useAuth();
-  const [registrationFailed, setregistrationFailed] = useState(false);
+  const [registrationFailed, setRegistrationFailed] = useState(false);
   const inputRef = useRef();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -46,7 +47,7 @@ const Registration = () => {
     },
     validationSchema,
     onSubmit: async (initialValues) => {
-      setregistrationFailed(false);
+      setRegistrationFailed(false);
 
       try {
         const { data } = await axios.post(routes.signupPath(), {
@@ -60,7 +61,7 @@ const Registration = () => {
           throw error;
         }
         if (error.response.status === 409) {
-          setregistrationFailed(true);
+          setRegistrationFailed(true);
           inputRef.current.focus();
           return;
         }

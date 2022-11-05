@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Spinner from 'react-bootstrap/Spinner';
 
-import { fetchData } from '../../store/slices/channelsSlice.js';
+import { useAuth } from '../../hooks/index.js';
+import fetchData from '../../services/fetchData.js';
 import { selectChannelsState } from '../../store/slices/selectors.js';
-import useAuth from '../../hooks/useAuth.jsx';
 import Channels from './Channels.jsx';
 import Messages from './Messages.jsx';
 import routes from '../../utils/routes.js';

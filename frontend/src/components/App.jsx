@@ -1,14 +1,14 @@
+import { ToastContainer } from 'react-toastify';
 import {
   BrowserRouter as Router, Routes, Route, Navigate, Outlet,
 } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 
-import useAuth from '../hooks/useAuth.jsx';
-import Login from './LoginPage/Login.jsx';
 import Navbar from './Navbar/Navbar.jsx';
+import Login from './LoginPage/Login.jsx';
 import Registration from './RegistrationPage/Registration.jsx';
-import ChatPage from './ChatPage/ChatPage.jsx';
-import NotFoundPage from './NotFoundPage/NotFoundPage.jsx';
+import ChatPage from './ChatPage/Chat.jsx';
+import NotFoundPage from './NotFoundPage/NotFound.jsx';
+import { useAuth } from '../hooks/index.js';
 import routes from '../utils/routes.js';
 
 const PrivateOutlet = () => {

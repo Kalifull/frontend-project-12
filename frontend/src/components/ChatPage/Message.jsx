@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import useAuth from '../../hooks/useAuth.jsx';
+import { useAuth } from '../../hooks/index.js';
 
 const Message = ({ user, body }) => {
   const { user: { username } } = useAuth();

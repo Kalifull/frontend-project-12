@@ -1,12 +1,12 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
 
 import Channel from './Channel.jsx';
-import { ReactComponent as GearIcon } from '../../assets/images/GearIcon.svg';
 import { setCurrentChannel } from '../../store/slices/channelsSlice.js';
 import { selectChannelsState } from '../../store/slices/selectors.js';
+import { ReactComponent as GearIcon } from '../../assets/GearIcon.svg';
 
 const Channels = () => {
   const dispatch = useDispatch();

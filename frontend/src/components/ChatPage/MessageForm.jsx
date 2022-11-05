@@ -1,30 +1,75 @@
-import React from 'react';
-import { Form, Button, InputGroup } from 'react-bootstrap';
+import * as yup from 'yup';
+import React, { useEffect, useRef } from 'react';
+import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { Form, Button, InputGroup } from 'react-bootstrap';
 
-import { ReactComponent as ArrowRigthSquare } from '../../assets/images/ArrowRigthSquare.svg';
+import getLogger from '../../lib/logger.js';
+import { useApi, useAuth } from '../../hooks/index.js';
+import { ReactComponent as ArrowRigthSquare } from '../../assets/ArrowRigthSquare.svg';
 
 const MessageForm = ({ channel }) => {
+  const api = useApi();
+  const { user: { username } } = useAuth();
+  const inputRef = useRef();
+  const logClient = getLogger('client');
   const { t } = useTranslation();
-  console.log(channel);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [channel]);
+
+  const validationSchema = yup.object().shape({
+    body: yup.string().trim().required('Required'),
+  });
+
+  const formik = useFormik({
+    initialValues: { body: '' },
+    validationSchema,
+    onSubmit: async ({ body }) => {
+      const message = {
+        body,
+        channelId: channel.id,
+        username,
+      };
+
+      try {
+        logClient('message.send');
+        await api.sendMessage(message);
+        formik.resetForm();
+      } catch (error) {
+        logClient('message.send.error', error);
+      }
+      formik.setSubmitting(false);
+      inputRef.current.focus();
+    },
+    validateOnBlur: false,
+  });
+
+  const isInvalid = !formik.dirty || !formik.isValid;
 
   return (
-    <Form noValidate className="py-1">
-      <InputGroup>
+    <Form noValidate onSubmit={formik.handleSubmit} className="py-1">
+      <InputGroup hasValidation={isInvalid}>
         <Form.Control
-          className="border-0 p-0 ps-2 text-secondary shadow-none"
-          type="text"
+          className="p-0 ps-2 text-secondary shadow-none border-0 rounded-2"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          disabled={formik.isSubmitting}
+          value={formik.values.body}
+          aria-label={t('chat.newMessage')}
           name="body"
-          aria-label="Новое сообщение"
-          placeholder={t('chat.placeholder')}
           autoComplete="off"
+          ref={inputRef}
           style={{ background: '#000000' }}
+          placeholder={t('chat.placeholder')}
         />
         <Button
-          size="lg"
+          className="ms-2 btn-dark rounded-2"
           variant="group-vertical"
           type="submit"
-          className="btn-dark"
+          disabled={isInvalid}
+          size="lg"
           style={{ background: '#9932cc' }}
         >
           <ArrowRigthSquare />

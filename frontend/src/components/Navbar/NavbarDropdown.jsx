@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavDropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { NavDropdown } from 'react-bootstrap';
 
-import { ReactComponent as GlobalIcon } from '../../assets/images/GlobalIcon.svg';
+import { ReactComponent as GlobalIcon } from '../../assets/GlobalIcon.svg';
 
 const languages = [
   {

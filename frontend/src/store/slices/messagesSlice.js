@@ -1,31 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchData } from './channelsSlice.js';
+import fetchData from '../../services/fetchData.js';
 
 export const messagesSlice = createSlice({
   name: 'messagesInfo',
   initialState: {
-    messages: [
-      // Для тестирования - раскомментировать
-      {
-        body: 'Привет, как дела? Я вот заебок)',
-        channelId: 1,
-        username: 'admin',
-        id: 3,
-      },
-      {
-        body: 'привет. да нормально!',
-        channelId: 1,
-        username: 'дима',
-        id: 4,
-      },
-      {
-        body: 'пойдем пить пиво, черти',
-        channelId: 1,
-        username: 'Андрей',
-        id: 5,
-      },
-    ],
+    messages: [],
   },
   reducers: {
     addMessage(state, { payload: { message } }) {
@@ -39,7 +19,7 @@ export const messagesSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchData.fulfilled, (state, { payload: { messages } }) => {
-        state.messages = [...state.messages, messages];
+        state.messages = messages;
         state.loadingStatus = 'idle';
         state.error = null;
       })
