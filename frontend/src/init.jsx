@@ -8,6 +8,7 @@ import App from './components/App.jsx';
 import getLogger from './lib/logger.js';
 import { ApiProvider, AuthProvider } from './contexts/index.js';
 import { addMessage } from './store/slices/messagesSlice.js';
+import { addChannel, setCurrentChannel } from './store/slices/channelsSlice.js';
 import resources from './locales/index.js';
 
 const init = async (socket) => {
@@ -24,6 +25,12 @@ const init = async (socket) => {
   socket.on('newMessage', (message) => {
     logSocket('newMessage', message);
     store.dispatch(addMessage({ message }));
+  });
+
+  socket.on('newChannel', (channel) => {
+    logSocket('newChannel', channel);
+    store.dispatch(addChannel({ channel }));
+    store.dispatch(setCurrentChannel({ channelId: channel.id }));
   });
 
   return (

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
 
 import Channel from './Channel.jsx';
+import { openModal } from '../../store/slices/modalSlice.js';
 import { setCurrentChannel } from '../../store/slices/channelsSlice.js';
 import { selectChannelsState } from '../../store/slices/selectors.js';
 import { ReactComponent as GearIcon } from '../../assets/GearIcon.svg';
@@ -18,11 +19,20 @@ const Channels = () => {
     dispatch(setCurrentChannel({ channelId }));
   };
 
+  const handleAddChannel = () => {
+    dispatch(openModal({ type: 'addChannel' }));
+  };
+
   return (
     <>
       <div className="d-flex justify-content-between mb-2 ps-4 pe-2">
         <span>{t('channels.channels')}</span>
-        <Button type="button" variant="group-vertical" className="p-0 text-primary">
+        <Button
+          type="button"
+          variant="group-vertical"
+          onClick={handleAddChannel}
+          className="p-0 text-primary"
+        >
           <GearIcon />
           <span className="visually-hidden">+</span>
         </Button>

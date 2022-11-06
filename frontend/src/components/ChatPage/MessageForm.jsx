@@ -8,20 +8,22 @@ import getLogger from '../../lib/logger.js';
 import { useApi, useAuth } from '../../hooks/index.js';
 import { ReactComponent as ArrowRigthSquare } from '../../assets/ArrowRigthSquare.svg';
 
-const MessageForm = ({ channel }) => {
+const MessageForm = ({ channel, messages }) => {
   const api = useApi();
   const { user: { username } } = useAuth();
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   const logClient = getLogger('client');
   const { t } = useTranslation();
 
   useEffect(() => {
     inputRef.current.focus();
-  }, [channel]);
+  }, [channel, messages.length]);
 
   const validationSchema = yup.object().shape({
     body: yup.string().trim().required('Required'),
   });
+
+  const currentTime = new Date().toLocaleTimeString().slice(0, -3);
 
   const formik = useFormik({
     initialValues: { body: '' },
@@ -31,6 +33,7 @@ const MessageForm = ({ channel }) => {
         body,
         channelId: channel.id,
         username,
+        currentTime,
       };
 
       try {

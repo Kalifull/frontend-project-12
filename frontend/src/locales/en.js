@@ -39,6 +39,9 @@ export default {
     chat: {
       send: 'Send',
       messageCount_zero: '{{ count }} message',
+      messageCount_one: '{{ count }} messages',
+      messageCount_few: '{{ count }} messages',
+      messageCount_many: '{{ count }} messages',
       messageCount_other: '{{ count }} messages',
       notFoundMessage: 'Message not found ( ´•︵•` )',
       newMessage: 'New message',

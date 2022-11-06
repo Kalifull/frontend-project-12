@@ -12,6 +12,13 @@ const ApiProvider = ({ children, socket }) => {
           }
         });
       },
+      createChannel: (channel) => {
+        socket.volatile.emit('newChannel', channel, ({ status }) => {
+          if (status !== 'ok') {
+            throw new Error('Socket Error', channel);
+          }
+        });
+      },
     }),
     [socket.volatile],
   );

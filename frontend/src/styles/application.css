@@ -43,3 +43,7 @@
 .bg-username {
   background-color: #2d102c;
 }
+
+.time {
+  float: right;
+}

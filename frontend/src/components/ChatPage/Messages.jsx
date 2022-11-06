@@ -35,8 +35,10 @@ const Messages = () => {
       </div>
       {messages.length ? (
         <div id="messages-box" className="messages-box overflow-auto px-5">
-          {messages.map(({ id, username, body }) => (
-            <Message key={id} user={username} body={body} />
+          {messages.map(({
+            id, username, body, currentTime,
+          }) => (
+            <Message key={id} user={username} body={body} currentTime={currentTime} />
           ))}
         </div>
       ) : (
@@ -45,7 +47,7 @@ const Messages = () => {
         </div>
       )}
       <div className="message-form mt-auto px-5 py-3">
-        <MessageForm channel={channel} />
+        <MessageForm channel={channel} messages={messages} />
       </div>
     </div>
   );

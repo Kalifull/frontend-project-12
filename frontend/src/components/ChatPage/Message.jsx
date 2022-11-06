@@ -2,7 +2,7 @@ import cn from 'classnames';
 
 import { useAuth } from '../../hooks/index.js';
 
-const Message = ({ user, body }) => {
+const Message = ({ user, body, currentTime }) => {
   const { user: { username } } = useAuth();
 
   const classes = cn({
@@ -13,10 +13,11 @@ const Message = ({ user, body }) => {
 
   return (
     <div className={`text-break text-light mb-2 ${classes}`}>
-      <b>{user}</b>
-      {': '}
-      <br />
-      {body}
+      <p className="h6">{`${user}`}</p>
+      <span>{body}</span>
+      <span className="time ms-2">
+        <small>{currentTime}</small>
+      </span>
     </div>
   );
 };
