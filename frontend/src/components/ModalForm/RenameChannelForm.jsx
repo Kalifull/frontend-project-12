@@ -8,17 +8,20 @@ import { toast } from 'react-toastify';
 
 import getLogger from '../../lib/logger.js';
 import { useApi } from '../../hooks/index.js';
-import { selectChannelsName } from '../../store/slices/selectors.js';
+import { selectChannelsName, selectModalState, selectChannelById } from '../../store/slices/selectors.js';
 
-const AddChannelForm = ({ handleClose }) => {
+const RenameChannelForm = ({ handleClose }) => {
   const api = useApi();
   const inputRef = useRef();
   const logClient = getLogger('client');
-  const channels = useSelector(selectChannelsName);
   const { t } = useTranslation();
 
+  const channels = useSelector(selectChannelsName);
+  const { channelId } = useSelector(selectModalState).channelId;
+  const channel = useSelector(selectChannelById(channelId));
+
   useEffect(() => {
-    inputRef.current.focus();
+    setTimeout(() => inputRef.current.focus());
   }, []);
 
   const validationSchema = yup.object().shape({
@@ -33,19 +36,21 @@ const AddChannelForm = ({ handleClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      channelsName: '',
+      channelsName: channel.name,
     },
     validationSchema,
     onSubmit: async ({ channelsName }, actions) => {
       try {
-        const data = await api.createChannel({ name: channelsName });
-        logClient('channel.create', data);
-        toast.success(t('channels.created'));
+        api.renameChannel({ id: channelId, name: channelsName });
+        toast.success(t('channels.renamed'));
         handleClose();
       } catch (error) {
-        logClient('channel.create.error', error);
+        logClient('channel.rename.error', error);
         actions.setSubmitting(false);
         inputRef.current.focus();
+        if (!error.isAxiosError) {
+          throw error;
+        }
       }
     },
     validateOnBlur: false,
@@ -55,7 +60,7 @@ const AddChannelForm = ({ handleClose }) => {
   return (
     <>
       <BootstrapModal.Header>
-        <BootstrapModal.Title>{t('modals.add')}</BootstrapModal.Title>
+        <BootstrapModal.Title>{t('modals.rename')}</BootstrapModal.Title>
         <Button
           variant="close"
           type="button"
@@ -99,4 +104,4 @@ const AddChannelForm = ({ handleClose }) => {
   );
 };
 
-export default AddChannelForm;
+export default RenameChannelForm;

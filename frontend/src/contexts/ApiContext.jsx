@@ -19,6 +19,20 @@ const ApiProvider = ({ children, socket }) => {
           }
         });
       },
+      renameChannel: (channel) => {
+        socket.volatile.emit('renameChannel', channel, ({ status }) => {
+          if (status !== 'ok') {
+            throw new Error('Socket Error', channel);
+          }
+        });
+      },
+      removeChannel: (channel) => {
+        socket.volatile.emit('removeChannel', channel, ({ status }) => {
+          if (status !== 'ok') {
+            throw new Error('Socket Error', channel);
+          }
+        });
+      },
     }),
     [socket.volatile],
   );

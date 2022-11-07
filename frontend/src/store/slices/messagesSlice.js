@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { removeChannel } from './channelsSlice.js';
 import fetchData from '../../services/fetchData.js';
 
 export const messagesSlice = createSlice({
@@ -26,6 +27,12 @@ export const messagesSlice = createSlice({
       .addCase(fetchData.rejected, (state, action) => {
         state.loadingStatus = 'failed';
         state.error = action.error;
+      })
+      .addCase(removeChannel, (state, { payload }) => {
+        const filtredMessages = state.messages.filter(
+          ({ channelId }) => channelId !== payload.channelId,
+        );
+        state.messages = filtredMessages;
       });
   },
 });

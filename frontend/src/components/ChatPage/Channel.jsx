@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Button, Dropdown, ButtonGroup } from 'react-bootstrap';
 
-const Channel = ({ channel, isCurrent, handleChoose }) => {
+const Channel = ({
+  channel, isCurrent, handleChoose, handleRename, handleRemove,
+}) => {
   const variant = isCurrent ? 'secondary' : null;
   const { t } = useTranslation();
 
@@ -22,8 +24,8 @@ const Channel = ({ channel, isCurrent, handleChoose }) => {
             <span className="visually-hidden">{t('channels.menu')}</span>
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item>{t('channels.remove')}</Dropdown.Item>
-            <Dropdown.Item>{t('channels.rename')}</Dropdown.Item>
+            <Dropdown.Item onClick={handleRename(channel.id)}>{t('channels.rename')}</Dropdown.Item>
+            <Dropdown.Item onClick={handleRemove(channel.id)}>{t('channels.remove')}</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       ) : (

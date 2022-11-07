@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const modalSlice = createSlice({
-  name: 'modalSlice',
+  name: 'modalInfo',
   initialState,
   reducers: {
     openModal(state, { payload: { type, channelId } }) {

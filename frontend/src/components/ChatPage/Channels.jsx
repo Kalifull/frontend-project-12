@@ -23,6 +23,14 @@ const Channels = () => {
     dispatch(openModal({ type: 'addChannel' }));
   };
 
+  const handleRenameChannel = (channelId) => () => {
+    dispatch(openModal({ type: 'renameChannel', channelId: { channelId } }));
+  };
+
+  const handleRemoveChannel = (channelId) => () => {
+    dispatch(openModal({ type: 'removeChannel', channelId: { channelId } }));
+  };
+
   return (
     <>
       <div className="d-flex justify-content-between mb-2 ps-4 pe-2">
@@ -44,6 +52,8 @@ const Channels = () => {
             channel={channel}
             isCurrent={channel.id === currentChannelId}
             handleChoose={handleChooseChannel(channel.id)}
+            handleRename={handleRenameChannel}
+            handleRemove={handleRemoveChannel}
           />
         ))}
       </ul>

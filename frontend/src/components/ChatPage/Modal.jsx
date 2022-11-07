@@ -2,13 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal as BootstrapModal } from 'react-bootstrap';
 
-import AddChannelForm from '../ModalForm/AddChannelForm.jsx';
+import mapping from '../ModalForm/index.js';
 import { closeModal } from '../../store/slices/modalSlice.js';
 import { selectModalState } from '../../store/slices/selectors.js';
-
-const mapping = {
-  addChannel: AddChannelForm,
-};
 
 const Modal = () => {
   const dispatch = useDispatch();

@@ -17,3 +17,8 @@ export const selectChannelsName = (state) => {
   const { channels } = state.channelsInfo;
   return channels.map(({ name }) => name);
 };
+
+export const selectChannelById = (channelId) => (state) => {
+  const { channels } = state.channelsInfo;
+  return channels.find(({ id }) => channelId === id);
+};
