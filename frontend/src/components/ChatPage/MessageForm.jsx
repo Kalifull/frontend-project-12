@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Form, Button, InputGroup } from 'react-bootstrap';
+import leoProfanity from 'leo-profanity';
 
 import getLogger from '../../lib/logger.js';
 import { useApi, useAuth } from '../../hooks/index.js';
@@ -29,8 +30,10 @@ const MessageForm = ({ channel, messages }) => {
     initialValues: { body: '' },
     validationSchema,
     onSubmit: async ({ body }) => {
+      leoProfanity.getDictionary('ru');
+      const filteredBody = leoProfanity.clean(body);
       const message = {
-        body,
+        body: filteredBody,
         channelId: channel.id,
         username,
         currentTime,

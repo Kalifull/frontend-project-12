@@ -34,7 +34,7 @@ export default {
       channelName: 'Chanel name',
       editChannelName: 'New channel name',
     },
-    animeChat: 'Anime Chat',
+    hexletChat: 'Hexlet Chat',
     logout: 'Log out',
     chat: {
       send: 'Send',

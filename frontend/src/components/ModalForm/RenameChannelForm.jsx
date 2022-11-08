@@ -5,10 +5,15 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Modal as BootstrapModal, Button, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import leoProfanity from 'leo-profanity';
 
 import getLogger from '../../lib/logger.js';
 import { useApi } from '../../hooks/index.js';
-import { selectChannelsName, selectModalState, selectChannelById } from '../../store/slices/selectors.js';
+import {
+  selectChannelsName,
+  selectModalState,
+  selectChannelById,
+} from '../../store/slices/selectors.js';
 
 const RenameChannelForm = ({ handleClose }) => {
   const api = useApi();
@@ -40,8 +45,11 @@ const RenameChannelForm = ({ handleClose }) => {
     },
     validationSchema,
     onSubmit: async ({ channelsName }, actions) => {
+      leoProfanity.getDictionary('ru');
+      const filteredName = leoProfanity.clean(channelsName);
+
       try {
-        api.renameChannel({ id: channelId, name: channelsName });
+        api.renameChannel({ id: channelId, name: filteredName });
         toast.success(t('channels.renamed'));
         handleClose();
       } catch (error) {

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Modal as BootstrapModal, Button, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import leoProfanity from 'leo-profanity';
 
 import getLogger from '../../lib/logger.js';
 import { useApi } from '../../hooks/index.js';
@@ -16,6 +17,8 @@ const AddChannelForm = ({ handleClose }) => {
   const logClient = getLogger('client');
   const channels = useSelector(selectChannelsName);
   const { t } = useTranslation();
+
+  leoProfanity.loadDictionary('ru');
 
   useEffect(() => {
     inputRef.current.focus();
@@ -37,8 +40,10 @@ const AddChannelForm = ({ handleClose }) => {
     },
     validationSchema,
     onSubmit: async ({ channelsName }, actions) => {
+      leoProfanity.getDictionary('ru');
+      const filteredName = leoProfanity.clean(channelsName);
       try {
-        const data = await api.createChannel({ name: channelsName });
+        const data = await api.createChannel({ name: filteredName });
         logClient('channel.create', data);
         toast.success(t('channels.created'));
         handleClose();

@@ -17,7 +17,7 @@ const Navbar = () => {
     <BootstrapNavbar bg="dark" variant="dark" expand="lg" className="shadow-sm">
       <Container>
         <BootstrapNavbar.Brand as={Link} to={routes.chatPagePath()}>
-          {t('animeChat')}
+          {t('hexletChat')}
         </BootstrapNavbar.Brand>
         <BootstrapNavbar.Toggle aria-controls="responsive-navbar-nav" />
         <BootstrapNavbar.Collapse id="responsive-navbar-nav" className="justify-content-end">

@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import { useAuth } from '../../hooks/index.js';
 import routes from '../../utils/routes.js';
 
-import avatarImages from '../../assets/images/avatarImages.jpg';
+import loginPageImages from '../../assets/images/loginPageImages.png';
 
 const Login = () => {
   const auth = useAuth();
@@ -57,14 +57,13 @@ const Login = () => {
     <div className="container-fluid h-100">
       <div className="row justify-content-center align-content-center h-100">
         <div className="col-12 col-md-8 col-xxl-6">
-          <div className="card shadow-sm">
+          <div className="card shadow">
             <div className="card-body row p-5">
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <img
-                  src={avatarImages}
-                  width="350"
+                  src={loginPageImages}
+                  width="260"
                   height="300"
-                  className="rounded-circle"
                   alt={t('login.header')}
                 />
               </div>
