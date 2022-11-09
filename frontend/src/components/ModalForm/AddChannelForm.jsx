@@ -73,7 +73,7 @@ const AddChannelForm = ({ handleClose }) => {
               name="channelsName"
               id="channelsName"
             />
-            <label className="visually-hidden" htmlFor="name">
+            <label className="visually-hidden" htmlFor="channelsName">
               {t('modals.channelName')}
             </label>
             <Form.Control.Feedback type="invalid">
