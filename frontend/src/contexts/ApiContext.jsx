@@ -15,21 +15,21 @@ const ApiProvider = ({ children, socket }) => {
       createChannel: (channel) => {
         socket.volatile.emit('newChannel', channel, ({ status }) => {
           if (status !== 'ok') {
-            throw new Error('Socket Error', channel);
+            throw new Error('Socket Error', status);
           }
         });
       },
       renameChannel: (channel) => {
         socket.volatile.emit('renameChannel', channel, ({ status }) => {
           if (status !== 'ok') {
-            throw new Error('Socket Error', channel);
+            throw new Error('Socket Error', status);
           }
         });
       },
       removeChannel: (channel) => {
         socket.volatile.emit('removeChannel', channel, ({ status }) => {
           if (status !== 'ok') {
-            throw new Error('Socket Error', channel);
+            throw new Error('Socket Error', status);
           }
         });
       },

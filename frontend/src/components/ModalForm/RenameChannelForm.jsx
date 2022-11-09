@@ -1,12 +1,12 @@
-import * as yup from 'yup';
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Modal as BootstrapModal, Button, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import leoProfanity from 'leo-profanity';
+import filter from 'leo-profanity';
 
+import getValidationSchema from '../../utils/validation.js';
 import getLogger from '../../lib/logger.js';
 import { useApi } from '../../hooks/index.js';
 import {
@@ -29,25 +29,13 @@ const RenameChannelForm = ({ handleClose }) => {
     setTimeout(() => inputRef.current.focus());
   }, []);
 
-  const validationSchema = yup.object().shape({
-    channelsName: yup
-      .string()
-      .trim()
-      .required('modals.required')
-      .min(3, 'modals.min')
-      .max(20, 'modals.max')
-      .notOneOf(channels, 'modals.uniq'),
-  });
-
   const formik = useFormik({
     initialValues: {
       channelsName: channel.name,
     },
-    validationSchema,
+    validationSchema: getValidationSchema(channels),
     onSubmit: async ({ channelsName }, actions) => {
-      leoProfanity.getDictionary('ru');
-      const filteredName = leoProfanity.clean(channelsName);
-
+      const filteredName = filter.clean(channelsName);
       try {
         api.renameChannel({ id: channelId, name: filteredName });
         toast.success(t('channels.renamed'));

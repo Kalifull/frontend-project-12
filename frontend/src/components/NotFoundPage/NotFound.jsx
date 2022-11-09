@@ -4,7 +4,7 @@ import { Image, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import 'flag-icon-css/css/flag-icons.min.css';
-import NotFoundImages from '../../assets/images/NotFoundImages.png';
+import NotFoundPageImages from '../../assets/images/NotFoundPageImages.png';
 import routes from '../../utils/routes.js';
 
 const NotFoundPage = () => {
@@ -12,7 +12,7 @@ const NotFoundPage = () => {
 
   return (
     <Container className="text-center">
-      <Image className="img-fluid" src={NotFoundImages} alt={t('notFoundPage.header')} />
+      <Image className="img-fluid" src={NotFoundPageImages} alt={t('notFoundPage.header')} />
       <h1 className="h4 text-muted">{t('notFoundPage.header')}</h1>
       <p className="text-muted">
         {t('notFoundPage.message')}

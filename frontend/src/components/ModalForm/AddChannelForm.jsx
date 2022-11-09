@@ -1,12 +1,12 @@
-import * as yup from 'yup';
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Modal as BootstrapModal, Button, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import leoProfanity from 'leo-profanity';
+import filter from 'leo-profanity';
 
+import getValidationSchema from '../../utils/validation.js';
 import getLogger from '../../lib/logger.js';
 import { useApi } from '../../hooks/index.js';
 import { selectChannelsName } from '../../store/slices/selectors.js';
@@ -18,30 +18,17 @@ const AddChannelForm = ({ handleClose }) => {
   const channels = useSelector(selectChannelsName);
   const { t } = useTranslation();
 
-  leoProfanity.loadDictionary('ru');
-
   useEffect(() => {
     inputRef.current.focus();
   }, []);
-
-  const validationSchema = yup.object().shape({
-    channelsName: yup
-      .string()
-      .trim()
-      .required('modals.required')
-      .min(3, 'modals.min')
-      .max(20, 'modals.max')
-      .notOneOf(channels, 'modals.uniq'),
-  });
 
   const formik = useFormik({
     initialValues: {
       channelsName: '',
     },
-    validationSchema,
+    validationSchema: getValidationSchema(channels),
     onSubmit: async ({ channelsName }, actions) => {
-      leoProfanity.getDictionary('ru');
-      const filteredName = leoProfanity.clean(channelsName);
+      const filteredName = filter.clean(channelsName);
       try {
         const data = await api.createChannel({ name: filteredName });
         logClient('channel.create', data);

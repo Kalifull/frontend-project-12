@@ -2,6 +2,7 @@ import i18next from 'i18next';
 import { Provider } from 'react-redux';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
+import filter from 'leo-profanity';
 
 import store from './store/index.js';
 import App from './components/App.jsx';
@@ -26,6 +27,9 @@ const init = async (socket) => {
     fallbackLng: defaultLanguage,
     debug: false,
   });
+
+  filter.loadDictionary('ru');
+  filter.add(filter.getDictionary('en'));
 
   socket.on('newMessage', (message) => {
     logSocket('newMessage', message);
