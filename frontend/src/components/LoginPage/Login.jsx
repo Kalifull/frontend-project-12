@@ -54,8 +54,6 @@ const Login = () => {
     },
   });
 
-  const isInvalid = !formik.dirty || !formik.isValid;
-
   return (
     <div className="container-fluid h-100">
       <div className="row justify-content-center align-content-center h-100">
@@ -101,7 +99,7 @@ const Login = () => {
                       </Form.Control.Feedback>
                     )}
                   </Form.Group>
-                  <Button type="submit" variant="dark" disabled={isInvalid} className="w-100 mb-3">
+                  <Button type="submit" variant="dark" className="w-100 mb-3">
                     {t('login.submit')}
                   </Button>
                 </fieldset>
