@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { useRollbar } from '@rollbar/react';
 import Spinner from 'react-bootstrap/Spinner';
 
 import { useAuth } from '../../hooks/index.js';
@@ -19,6 +20,7 @@ const ChatPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const rollbar = useRollbar();
 
   const { loadingStatus } = useSelector(selectChannelsState);
   const loading = loadingStatus === 'loading';
@@ -27,6 +29,7 @@ const ChatPage = () => {
     try {
       dispatch(fetchData(auth.getAuthHeader()));
     } catch (error) {
+      rollbar.error(error);
       if (!error.isAxiosError) {
         toast.error(t('errors.unknown'));
         return;
@@ -51,7 +54,7 @@ const ChatPage = () => {
       <Modal />
       <div className="container h-100 my-4 overflow-hidden rounded-4 shadow">
         <div className="row h-100 bg-white flex-md-row">
-          <div className="col-4 col-md-2 border-end pt-5 px-0 bg-light">
+          <div className="col-4 h-100 col-md-2 border-end pt-5 px-0 bg-light">
             <Channels />
           </div>
           <div className="col p-0 h-100">

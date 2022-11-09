@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { animateScroll } from 'react-scroll';
 import { Button } from 'react-bootstrap';
 
 import Channel from './Channel.jsx';
@@ -14,6 +15,14 @@ const Channels = () => {
   const { t } = useTranslation();
 
   const { channels, currentChannelId } = useSelector(selectChannelsState);
+
+  useEffect(() => {
+    animateScroll.scrollToBottom({
+      containerId: 'channels-box',
+      delay: 0,
+      duration: 0,
+    });
+  }, [channels.length]);
 
   const handleChooseChannel = (channelId) => () => {
     dispatch(setCurrentChannel({ channelId }));
@@ -45,18 +54,20 @@ const Channels = () => {
           <span className="visually-hidden">+</span>
         </Button>
       </div>
-      <ul className="nav flex-column nav-pills nav-fill px-2">
-        {channels.map((channel) => (
-          <Channel
-            key={channel.id}
-            channel={channel}
-            isCurrent={channel.id === currentChannelId}
-            handleChoose={handleChooseChannel(channel.id)}
-            handleRename={handleRenameChannel}
-            handleRemove={handleRemoveChannel}
-          />
-        ))}
-      </ul>
+      <div id="channels-box" className="overflow-auto" style={{ height: '95%' }}>
+        <ul className="nav flex-column nav-pills nav-fill px-2">
+          {channels.map((channel) => (
+            <Channel
+              key={channel.id}
+              channel={channel}
+              isCurrent={channel.id === currentChannelId}
+              handleChoose={handleChooseChannel(channel.id)}
+              handleRename={handleRenameChannel}
+              handleRemove={handleRemoveChannel}
+            />
+          ))}
+        </ul>
+      </div>
     </>
   );
 };

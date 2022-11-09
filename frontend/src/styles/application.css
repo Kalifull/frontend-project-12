@@ -44,6 +44,11 @@
   background-color: #2d102c;
 }
 
+.input-text-color,
+.input-text-color:focus {
+  color: rgb(205, 205, 205);
+}
+
 .time {
   float: right;
 }

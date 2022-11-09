@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'react-bootstrap';
+import { useRollbar } from '@rollbar/react';
 import { toast } from 'react-toastify';
 
 import { useAuth } from '../../hooks/index.js';
@@ -18,6 +19,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
+  const rollbar = useRollbar();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -37,6 +39,7 @@ const Login = () => {
         const { from } = location.state || { from: { pathname: routes.chatPagePath() } };
         navigate(from);
       } catch (error) {
+        rollbar.error(error);
         if (!error.isAxiosError) {
           toast.error(t('errors.unknown'));
           return;
@@ -60,12 +63,7 @@ const Login = () => {
           <div className="card shadow">
             <div className="card-body row p-5">
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                <img
-                  src={loginPageImages}
-                  width="260"
-                  height="300"
-                  alt={t('login.header')}
-                />
+                <img src={loginPageImages} width="260" height="300" alt={t('login.header')} />
               </div>
               <Form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
                 <h1 className="text-center mb-4">{t('login.header')}</h1>

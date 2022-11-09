@@ -11,7 +11,7 @@ export default {
     },
     loading: 'Загрузка...',
     login: {
-      username: 'Ваше имя',
+      username: 'Ваш ник',
       password: 'Пароль',
       submit: 'Войти',
       signup: 'Регистрация',
@@ -34,7 +34,7 @@ export default {
       channelName: 'Имя канала',
       editChannelName: 'Новое имя канала',
     },
-    hexletChat: 'Хекслет Чат',
+    hexletChat: 'Hexlet Chat',
     logout: 'Выйти',
     chat: {
       send: 'Отправить',

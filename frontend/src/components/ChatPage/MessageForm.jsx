@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Form, Button, InputGroup } from 'react-bootstrap';
+import { useRollbar } from '@rollbar/react';
 import leoProfanity from 'leo-profanity';
 
 import getLogger from '../../lib/logger.js';
@@ -15,6 +16,7 @@ const MessageForm = ({ channel, messages }) => {
   const inputRef = useRef(null);
   const logClient = getLogger('client');
   const { t } = useTranslation();
+  const rollbar = useRollbar();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -44,6 +46,7 @@ const MessageForm = ({ channel, messages }) => {
         await api.sendMessage(message);
         formik.resetForm();
       } catch (error) {
+        rollbar.error(error);
         logClient('message.send.error', error);
       }
       formik.setSubmitting(false);
@@ -58,7 +61,7 @@ const MessageForm = ({ channel, messages }) => {
     <Form noValidate onSubmit={formik.handleSubmit} className="py-1">
       <InputGroup hasValidation={isInvalid}>
         <Form.Control
-          className="p-0 ps-2 text-secondary shadow-none border-0 rounded-2"
+          className="input-text-color p-0 ps-2 shadow-none border-0 rounded-2"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           disabled={formik.isSubmitting}

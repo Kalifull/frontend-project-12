@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Modal as BootstrapModal, Button, Form } from 'react-bootstrap';
+import { useRollbar } from '@rollbar/react';
 import { toast } from 'react-toastify';
 import filter from 'leo-profanity';
 
@@ -17,6 +18,7 @@ const AddChannelForm = ({ handleClose }) => {
   const logClient = getLogger('client');
   const channels = useSelector(selectChannelsName);
   const { t } = useTranslation();
+  const rollbar = useRollbar();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -35,6 +37,7 @@ const AddChannelForm = ({ handleClose }) => {
         toast.success(t('channels.created'));
         handleClose();
       } catch (error) {
+        rollbar.error(error);
         logClient('channel.create.error', error);
         actions.setSubmitting(false);
         inputRef.current.focus();

@@ -79,12 +79,7 @@ const Registration = () => {
           <div className="card shadow">
             <div className="card-body d-flex flex-column flex-md-row justify-content-around align-items-center p-5">
               <div>
-                <img
-                  src={SignupPageImages}
-                  width="300"
-                  height="300"
-                  alt={t('signup.header')}
-                />
+                <img src={SignupPageImages} width="300" height="300" alt={t('signup.header')} />
               </div>
               <Form onSubmit={formik.handleSubmit} className="w-50">
                 <h1 className="text-center mb-4">{t('signup.header')}</h1>

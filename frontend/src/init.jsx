@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import filter from 'leo-profanity';
+import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 
 import store from './store/index.js';
 import App from './components/App.jsx';
@@ -52,16 +53,29 @@ const init = async (socket) => {
     store.dispatch(removeChannel({ channelId: channel.id }));
   });
 
+  const rollbarConfig = {
+    accessToken: process.env.REACT_APP_POST_CLIENT_ITEM_ACCESS_TOKEN,
+    captureUncaught: true,
+    captureUnhandledRejections: true,
+    payload: {
+      environment: 'production',
+    },
+  };
+
   return (
-    <Provider store={store}>
-      <I18nextProvider i18n={i18n}>
-        <ApiProvider socket={socket}>
-          <AuthProvider>
-            <App />
-          </AuthProvider>
-        </ApiProvider>
-      </I18nextProvider>
-    </Provider>
+    <RollbarProvider config={rollbarConfig}>
+      <ErrorBoundary>
+        <Provider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <ApiProvider socket={socket}>
+              <AuthProvider>
+                <App />
+              </AuthProvider>
+            </ApiProvider>
+          </I18nextProvider>
+        </Provider>
+      </ErrorBoundary>
+    </RollbarProvider>
   );
 };
 

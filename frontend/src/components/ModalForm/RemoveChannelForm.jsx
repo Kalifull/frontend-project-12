@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Modal as BootstrapModal, Button } from 'react-bootstrap';
+import { useRollbar } from '@rollbar/react';
 import { toast } from 'react-toastify';
 
 import getLogger from '../../lib/logger.js';
@@ -13,6 +14,7 @@ const RemoveChannelForm = ({ handleClose }) => {
   const logClient = getLogger('client');
   const [loadingStatus, setLoadingStatus] = useState(false);
   const { t } = useTranslation();
+  const rollbar = useRollbar();
 
   const { channelId } = useSelector(selectModalState).channelId;
 
@@ -24,6 +26,7 @@ const RemoveChannelForm = ({ handleClose }) => {
       toast.success(t('channels.removed'));
       handleClose();
     } catch (error) {
+      rollbar.error(error);
       logClient('channel.remove.error', error);
       setLoadingStatus(false);
     }
