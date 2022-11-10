@@ -15,16 +15,32 @@ body {
 }
 
 .btn-dark {
-  border-color: #2c1b4785;
+  border-color: #724C9D;
   background-color: #724C9D;
 }
 
-.btn-dark:hover {
+.btn-dark:hover,
+.btn-dark:focus {
   background-color: #2C1B47;
 }
 
-.btn-outline-dark:hover {
+.btn-dark:focus,
+.btn-dark:active {
+  box-shadow: 0 0 4px 4px #604d9e !important;
+}
+
+.btn-outline-dark {
+  border-color: #2C1B47;
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus {
   background-color: #2C1B47;
+}
+
+.btn-outline-dark:focus,
+.btn-outline-dark:active {
+  box-shadow: 0 0 4px 4px #604d9e !important;
 }
 
 .chat-theme {
