@@ -49,14 +49,14 @@ const RemoveChannelForm = ({ handleClose }) => {
         <div className="d-flex justify-content-end">
           <Button
             className="me-2"
-            variant="danger"
+            variant="primary"
             type="button"
             onClick={handleClose}
             disabled={loadingStatus}
           >
             {t('modals.cancel')}
           </Button>
-          <Button variant="primary" onClick={handleRemove} type="button" disabled={loadingStatus}>
+          <Button variant="danger" onClick={handleRemove} type="button" disabled={loadingStatus}>
             {t('modals.confirm')}
           </Button>
         </div>

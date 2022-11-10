@@ -52,7 +52,7 @@ const ChatPage = () => {
   ) : (
     <>
       <Modal />
-      <div className="container h-100 my-4 overflow-hidden rounded-4 shadow">
+      <div className="container h-100 my-4 overflow-hidden shadow-sm rounded-3">
         <div className="row h-100 bg-white flex-md-row">
           <div className="col-4 h-100 col-md-2 border-end pt-5 px-0 bg-light">
             <Channels />

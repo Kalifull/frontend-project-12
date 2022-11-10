@@ -61,7 +61,7 @@ const MessageForm = ({ channel, messages }) => {
     <Form noValidate onSubmit={formik.handleSubmit} className="py-1">
       <InputGroup hasValidation={isInvalid}>
         <Form.Control
-          className="input-text-color p-0 ps-2 shadow-none border-0 rounded-2"
+          className="input-text-color p-0 ps-2 border-0 rounded-2"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           disabled={formik.isSubmitting}
@@ -70,7 +70,7 @@ const MessageForm = ({ channel, messages }) => {
           name="body"
           autoComplete="off"
           ref={inputRef}
-          style={{ background: '#000000' }}
+          style={{ background: '#DCCAE9' }}
           placeholder={t('chat.placeholder')}
         />
         <Button

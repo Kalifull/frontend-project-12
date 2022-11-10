@@ -25,9 +25,9 @@ const NavbarDropdown = () => {
   };
 
   return (
-    <NavDropdown title={<GlobalIcon />} id="basic-nav-dropdown">
+    <NavDropdown className="mx-2" title={<GlobalIcon />} id="basic-nav-dropdown">
       {languages.map(({ code, language, country }) => (
-        <NavDropdown.Item onClick={handleSwitchLanguage(code)} key={country}>
+        <NavDropdown.Item as="button" onClick={handleSwitchLanguage(code)} key={country}>
           <span className={`flag-icon flag-icon-${country} mx-2`} />
           {language}
         </NavDropdown.Item>

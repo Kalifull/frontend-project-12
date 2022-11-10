@@ -19,6 +19,9 @@ export default {
       authFailed: 'Неверные имя пользователя или пароль',
       header: 'Войти',
     },
+    navbar: {
+      currentUser: 'Авторизованы как',
+    },
     modals: {
       add: 'Добавить канал',
       required: 'Обязательное поле',

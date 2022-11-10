@@ -19,6 +19,9 @@ export default {
       authFailed: 'Username or password is incorrect',
       header: 'Login',
     },
+    navbar: {
+      currentUser: 'Authorized as',
+    },
     modals: {
       add: 'Add channel',
       required: 'Required',

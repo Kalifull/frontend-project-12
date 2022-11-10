@@ -16,7 +16,7 @@ const Message = ({ user, body, currentTime }) => {
       <p className="h6">{`${user}`}</p>
       <span>{body}</span>
       <span className="time ms-2">
-        <small>{currentTime}</small>
+        <small className="opacity-75">{currentTime}</small>
       </span>
     </div>
   );

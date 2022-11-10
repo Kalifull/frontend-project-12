@@ -68,12 +68,14 @@ const Registration = () => {
         throw error;
       }
     },
+    validateOnChange: false,
+    validateOnBlur: false, //! validateOnChange: false, validateOnBlur: false,
   });
 
   return (
     <div className="container-fluid h-100">
       <div className="row justify-content-center align-content-center h-100">
-        <div className="col-12 col-md-8 col-xxl-6">
+        <div className="col-12 col-md-8 col-xxl-8">
           <div className="card shadow">
             <div className="card-body d-flex flex-column flex-md-row justify-content-around align-items-center p-5">
               <div>
@@ -146,13 +148,13 @@ const Registration = () => {
                     </Form.Control.Feedback>
                     <Form.Label htmlFor="confirmPassword">{t('signup.confirm')}</Form.Label>
                   </Form.Group>
-                  <Button type="submit" variant="dark" className="w-100 mb-3">
+                  <Button type="submit" variant="outline-dark" className="w-100 mb-3">
                     {t('signup.submit')}
                   </Button>
                 </fieldset>
               </Form>
             </div>
-            <div className="card-footer p-4 bg-dark">
+            <div className="card-footer p-4">
               <div className="text-center text-white">
                 <span>{t('signup.haveAnAccount')}</span>
                 <Link to={routes.loginPagePath()} className="text-white">

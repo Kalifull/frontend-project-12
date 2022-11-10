@@ -4,7 +4,7 @@ import { Button, Dropdown, ButtonGroup } from 'react-bootstrap';
 const Channel = ({
   channel, isCurrent, handleChoose, handleRename, handleRemove,
 }) => {
-  const variant = isCurrent ? 'secondary' : null;
+  const variant = isCurrent ? 'dark' : null;
   const { t } = useTranslation();
 
   return (
