@@ -1,3 +1,4 @@
+import React from 'react';
 import i18next from 'i18next';
 import { Provider } from 'react-redux';
 import LanguageDetector from 'i18next-browser-languagedetector';

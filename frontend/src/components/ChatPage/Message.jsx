@@ -1,3 +1,4 @@
+import React from 'react';
 import cn from 'classnames';
 
 import { useAuth } from '../../hooks/index.js';
